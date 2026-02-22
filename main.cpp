@@ -1,19 +1,57 @@
+#include <cstdlib>
 #include <iostream>
+#include <cstring>
+#include <vector>
 
 using namespace std;
 
-int retSum(int a, int b, int& carry) {
-    int sum = a+b+carry;
-    cout<<sum<<endl;
-
-    carry = 12;
-    return sum;
+bool isFile(char* cont) {
+    string cont_str = cont;
+    if (cont_str.find(".")!=string::npos) return true;
+    else return false;
 }
 
-int main() {
-    int carry=2;
-    retSum(12, 15, carry);
-    int res = retSum(0, 0, carry);
+// class Command {
+//     string start;
+//     vector<string> files;
+
+//     public:
+//     Command(char* start = "g++ ", char* mainfile = "./main.cpp") {
+//         this->start = start;
+//         this->files.push_back(mainfile);
+//     }
+
+//     int run() {
+//         string cmd = "";
+//         cmd.append(start);
+//         for (int i=0; i<files.size(); i++) {
+//             cmd.append(files[i]);
+//             cmd.append(" ");
+//         }
+//         cmd.append("-o")
+//     }
+// };
+
+int main(int argc, char** argv) {
+    if (argc>1) {
+        string cmdbuild = "";
+        string runcmd = "./main";
+        cmdbuild.append("g++ ./main.cpp ");
+        if (strcmp(argv[1], "brun")) {
+            cmdbuild.append(" -o ./main");
+            system(cmdbuild.c_str());
+            system(runcmd.c_str());
+        }
+        else if (strcmp(argv[1], "run")) {
+            system(runcmd.c_str());
+        }
+        else if (strcmp(argv[1], "add")) {
+            for (int i=1; i<argc; i++) {
+                if (isFile(argv[i])) cmdbuild.append(argv[i]);
+                else break;
+            }
+        }
+    }
 
     return 0;
 }
