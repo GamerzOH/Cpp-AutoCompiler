@@ -25,7 +25,17 @@ class ConfigLoader {
        return 1;
     }
     void parseFiles() {
-        configFile.open(filepath);
+        try{
+            configFile.open(filepath);
+            if (configFile.is_open()==false) throw "Unable to load file";
+        }
+        catch(string err) {
+            if (err=="Unable to load file") cout<<err;
+        }
+        catch(...) {
+            cout<<"An unexpected error occured!";
+            return;
+        }
         configFile.seekg(0, ios_base::end);
         int filesize = configFile.tellg();
         configFile.seekg(0, ios_base::beg);
@@ -50,4 +60,6 @@ class ConfigLoader {
         }
         return false;
     }
+
+
 };
