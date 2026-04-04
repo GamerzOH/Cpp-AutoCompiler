@@ -2,8 +2,19 @@
 
 using namespace std;
 
-int main() {
+void followConfig() {
+
+}
+
+int main(int argc, char** argv) {
     ConfigLoader loader;
+
+    if (argc>1) {
+
+    }
+    else {
+        followConfig();
+    }
 
     return 0;
 }
