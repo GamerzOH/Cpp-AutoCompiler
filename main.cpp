@@ -1,3 +1,4 @@
+#include <iostream>
 #include "confreader.hpp"
 
 using namespace std;
@@ -10,7 +11,7 @@ int main(int argc, char** argv) {
     ConfigLoader loader;
 
     if (argc>1) {
-
+        cout<<argv[1];
     }
     else {
         followConfig();

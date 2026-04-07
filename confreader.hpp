@@ -7,16 +7,16 @@
     using namespace std;
     using namespace std::filesystem;
 
-    class ConfigLoader{
+    class ConfigLoader {
     private:
     path filename, dirpath, filepath;
     ifstream configFile;
     vector<string> files;
     public:
-    ConfigLoader();
+    ConfigLoader(const path dirpath = "./", const path filename = "config.conf");
     int countlines();
     void parseFiles();
     void displayFiles();
-    bool isValidFilename();
+    bool isValidFilename(const string name);
     };
 #endif
